@@ -1,13 +1,6 @@
 ##
 ## Contrasts after effect (effects package)
 ##
-## Current functionality provides support for the equivalents of:
-## margins rep78, pwcompare(effects) mcompare(method)
-## margins foreign#rep78, pwcompare(effects) mcompare(method)
-## margins foreign, at(mpg=(10(1)12)) pwcompare(effect) mcomp(method)
-## margins i(0).foreign@i(3 4).rep78 i(1).foreign@i(3 4).rep78, contrast(effect) mcomp(method)
-##
-##
 ## 06/28/2016
 ## Simo Goshev
 ##
