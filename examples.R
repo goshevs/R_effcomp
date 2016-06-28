@@ -1,10 +1,17 @@
-## Testing of programs
+## 
+## Testing example of effcomp
+##
+##
+## 06/28/2016
+## Simo Goshev
+##
+##
+##
 
 library(effects)
-
 rm(list=ls())
 
-source("/home/mint/Desktop/effects/programs.R")
+# source the effcomp.R
 
 ##############################################################################################
 ### PART 1. ILLUSTRATION OF COMPUTATION
