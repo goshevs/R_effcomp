@@ -148,7 +148,7 @@ adj4mcomp <- function(effcomp_obj, adjmethod = "none") {
 }
 
 
-### R3: ROUTINE FOR COMPUTING ADDITIONAL STATISTICAL TESTS
+### R3: ROUTINE FOR COMPUTING P-VALUE ADJUSTMENT
 p_adjust <- function(pval, adjmethod, n = length(pval), tval = NULL, df = NULL) {
 
     if (adjmethod %in% c("sidak", "scheffe")) {
