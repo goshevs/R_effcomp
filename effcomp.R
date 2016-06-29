@@ -21,7 +21,7 @@ effcomp <- function(effects_obj, lincon, all = FALSE) {
         eff_levs <- as.character(effects_obj$x[[1]]) # get string labels
     }
     else {
-        eff_levs <- apply(effects_obj$x, 1, paste, collapse = ":") # merge labels
+        eff_levs <- apply(effects_obj$x, 1, paste, collapse = "-") # merge labels
     }
 
     ## Check if effects with NA fits exist; remove if present
