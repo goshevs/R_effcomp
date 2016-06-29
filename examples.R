@@ -2,7 +2,7 @@
 ## Testing example of effcomp
 ##
 ##
-## 06/28/2016
+## 06/29/2016
 ## Simo Goshev
 ##
 ##
@@ -12,6 +12,8 @@ library(effects)
 rm(list=ls())
 
 # source the effcomp.R
+source("effcomp.R")
+
 
 ##############################################################################################
 ### PART 1. ILLUSTRATION OF COMPUTATION
@@ -36,13 +38,13 @@ as.data.frame(type_eff)                  # print effects
 comps <- effcomp(type_eff, all = TRUE)   # compute all contrasts
 print(comps$res)                         # print contrasts
 
-comps_tests <- adj4mcomp(comps)  # compute statistical tests, no adjustment for mulitple comparisons
+comps_tests <- testpwcomp(comps)  # compute statistical tests, no adjustment for mulitple comparisons
 print(comps_tests$res)                   # print all results
 
-comps_tests_bon <- adj4mcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
+comps_tests_bon <- testpwcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
 print(comps_tests_bon$res)                   # print all results
 
-comps_tests_sch <- adj4mcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
+comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
 print(comps_tests_sch$res)                   # print all results
 
 
@@ -55,13 +57,13 @@ contr_mat <- matrix(c(-1, 1, 0,
 comps <- effcomp(type_eff,contr_mat)   # compute all contrasts
 print(comps$res)                         # print contrasts
 
-comps_tests <- adj4mcomp(comps)  # compute statistical tests, no adjustment for mulitple comparisons
+comps_tests <- testpwcomp(comps)  # compute statistical tests, no adjustment for mulitple comparisons
 print(comps_tests$res)                   # print all results
 
-comps_tests_bon <- adj4mcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
+comps_tests_bon <- testpwcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
 print(comps_tests_bon$res)                   # print all results
 
-comps_tests_sch <- adj4mcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
+comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
 print(comps_tests_sch$res)                   # print all results
 
 
@@ -77,13 +79,13 @@ as.data.frame(type_educ)                            # print effects
 comps <- effcomp(type_educ, all = TRUE)   # compute all contrasts
 print(comps$res)                          # print contrasts
 
-comps_tests <- adj4mcomp(comps)           # compute statistical tests, no adjustment for mulitple comparisons
+comps_tests <- testpwcomp(comps)           # compute statistical tests, no adjustment for mulitple comparisons
 print(comps_tests$res)                    # print all results
 
-comps_tests_bon <- adj4mcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
+comps_tests_bon <- testpwcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
 print(comps_tests_bon$res)                   # print all results
 
-comps_tests_sch <- adj4mcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
+comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
 print(comps_tests_sch$res)                   # print all results
 
 
@@ -97,13 +99,13 @@ contr_mat <- matrix(c(-1, 1, 0, 0, 0, 0, 0, 0, 0,
 comps <- effcomp(type_educ,contr_mat)   # compute all contrasts
 print(comps$res)                         # print contrasts
 
-comps_tests <- adj4mcomp(comps)  # compute statistical tests, no adjustment for mulitple comparisons
+comps_tests <- testpwcomp(comps)  # compute statistical tests, no adjustment for mulitple comparisons
 print(comps_tests$res)                   # print all results
 
-comps_tests_bon <- adj4mcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
+comps_tests_bon <- testpwcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
 print(comps_tests_bon$res)                   # print all results
 
-comps_tests_sch <- adj4mcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
+comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
 print(comps_tests_sch$res)                   # print all results
 
 
@@ -116,13 +118,13 @@ as.data.frame(type_educ_inc)                            # print effects
 comps <- effcomp(type_educ_inc, all = TRUE)   # compute all contrasts
 print(comps$res)                          # print contrasts
 
-comps_tests <- adj4mcomp(comps)           # compute statistical tests, no adjustment for mulitple comparisons
+comps_tests <- testpwcomp(comps)           # compute statistical tests, no adjustment for mulitple comparisons
 print(comps_tests$res)                    # print all results
 
-comps_tests_bon <- adj4mcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
+comps_tests_bon <- testpwcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
 print(comps_tests_bon$res)                   # print all results
 
-comps_tests_sch <- adj4mcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
+comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
 print(comps_tests_sch$res)                   # print all results
 
 
@@ -137,13 +139,13 @@ contr_mat <- matrix(c(-1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 comps <- effcomp(type_educ_inc, contr_mat)   # compute all contrasts
 print(comps$res)                         # print contrasts
 
-comps_tests <- adj4mcomp(comps)  # compute statistical tests, no adjustment for mulitple comparisons
+comps_tests <- testpwcomp(comps)  # compute statistical tests, no adjustment for mulitple comparisons
 print(comps_tests$res)                   # print all results
 
-comps_tests_bon <- adj4mcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
+comps_tests_bon <- testpwcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
 print(comps_tests_bon$res)                   # print all results
 
-comps_tests_sch <- adj4mcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
+comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
 print(comps_tests_sch$res)                   # print all results
 
 

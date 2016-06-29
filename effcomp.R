@@ -1,7 +1,7 @@
 ##
 ## Contrasts after effect (effects package)
 ##
-## 06/28/2016
+## 06/29/2016
 ## Simo Goshev
 ##
 ##
@@ -13,6 +13,7 @@
 ### R1: ROUTINE FOR COMPUTING PAIR-WISE LINEAR CONTRASTS
 effcomp <- function(effects_obj, lincon, all = FALSE) {
 
+    
     nvars <- dim(effects_obj$x)[2]      # get the number of variables used in effects
     df <- c(rep(NA,2))                  # vector to collect degrees of freedom for scheffe
     
@@ -125,7 +126,7 @@ effcomp <- function(effects_obj, lincon, all = FALSE) {
 
 
 ### R2: ROUTINE FOR COMPUTING STATISTICAL TESTS FOR PAIR-WISE LINEAR CONTRASTS
-adj4mcomp <- function(effcomp_obj, adjmethod = "none") {
+testpwcomp <- function(effcomp_obj, adjmethod = "none") {
 
     tval <- effcomp_obj$contr/sqrt(diag(effcomp_obj$vcov))
     pval <- 2*(1 - pt(abs(tval), effcomp_obj$df[2]))
