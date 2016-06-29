@@ -13,8 +13,7 @@ of each file is discussed in more detail below.
 ## File effcomp.R
 
 File _effcomp.R_ contains three functions: two primary functions and one
-utility function. Users of the package would perhaps want to
-consider using only the primary functions.
+utility function. Users would perhaps want to consider using only the primary functions.
 
 ### Primary functions
 
