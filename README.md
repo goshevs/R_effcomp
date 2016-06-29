@@ -4,7 +4,7 @@
 Package 'effects' in R offers excellent functionality for
 computing the type of marginal effects known as average partial
 effects. An unfortunate shotfall of the package is that it does not
-offer capabilities for computing and testing of pair-wise differences
+offer capabilities for computing and testing of pairwise differences
 in the margins. The goal of this project is to fill this void.
 
 The repo contains two files: _effcomp.R_ and _examples.R_. The content
@@ -19,7 +19,7 @@ utility function. Users would perhaps want to consider using only the primary fu
 
 The primary functions are `effcomp` and `testpwcomp`. 
 
-Function `effcomp` computes pair-wise differences in margins. Its
+Function `effcomp` computes pairwise differences in margins. Its
 syntax is:  
 
     effcomp(effects_obj, lincon, all = FALSE)
@@ -30,16 +30,16 @@ and its arguments are:
   `Effect` from Package 'effects'
   
 + `lincon`: stands for "linear contrasts" and is a matrix of
-  pair-wise linear contrasts which is provided by the user. This
+  pairwise linear contrasts which is provided by the user. This
   argument can be omitted if `all == TRUE`
   
 + `all`: a logical flag which indicates whether all possible
-  pair-wise contrasts are to be computed. At its default value
-  `FALSE`, the user has to provide a matrix of pair-wise linear
+  pairwise contrasts are to be computed. At its default value
+  `FALSE`, the user has to provide a matrix of pairwise linear
   contrasts.
   
 Function `testpwcomp` computes statistical tests for the
-pair-wise differences of margins. It also allows for adjustment of the
+pairwise differences of margins. It also allows for adjustment of the
 p-values of the tests for multiple comparisons. The syntax of the
 command is:
 

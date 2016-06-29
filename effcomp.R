@@ -10,14 +10,14 @@
 ##############################################################################################
 ### 1. FUNCTION DEFINITION
 
-### R1: ROUTINE FOR COMPUTING PAIR-WISE LINEAR CONTRASTS
+### R1: ROUTINE FOR COMPUTING PAIRWISE LINEAR CONTRASTS
 effcomp <- function(effects_obj, lincon, all = FALSE) {
 
     
     nvars <- dim(effects_obj$x)[2]      # get the number of variables used in effects
     df <- c(rep(NA,2))                  # vector to collect degrees of freedom for scheffe
     
-    ## Retrieve/create the levels for the pair-wise comparisons
+    ## Retrieve/create the levels for the pairwise comparisons
     if (nvars == 1) {
         eff_levs <- as.character(effects_obj$x[[1]]) # get string labels
     }
@@ -42,7 +42,7 @@ effcomp <- function(effects_obj, lincon, all = FALSE) {
         mybetas <- effects_obj$fit
     }
 
-    ## If all possible pair-wise comparisons are needed
+    ## If all possible pairwise comparisons are needed
     if (all) {
         eff_levs_num <- as.numeric(ordered(eff_levs, levels=c(eff_levs))) # get underlying numbers
         mypairs <- t(combn(eff_levs_num, 2))
@@ -99,7 +99,7 @@ effcomp <- function(effects_obj, lincon, all = FALSE) {
         myrow_names <- apply(lincon, 1, mycontr_fun) # this provides for multiple rows in the lincon matrix
     }
 
-    ## Compute the pair-wise linear contrasts
+    ## Compute the pairwise linear contrasts
     beta_contr  <- crossprod(t(lincon), mybetas)
     myres <- beta_contr
     rownames(myres) <- myrow_names
@@ -125,7 +125,7 @@ effcomp <- function(effects_obj, lincon, all = FALSE) {
 }
 
 
-### R2: ROUTINE FOR COMPUTING STATISTICAL TESTS FOR PAIR-WISE LINEAR CONTRASTS
+### R2: ROUTINE FOR COMPUTING STATISTICAL TESTS FOR PAIRWISE LINEAR CONTRASTS
 testpwcomp <- function(effcomp_obj, adjmethod = "none") {
 
     tval <- effcomp_obj$contr/sqrt(diag(effcomp_obj$vcov))
@@ -135,7 +135,7 @@ testpwcomp <- function(effcomp_obj, adjmethod = "none") {
     colnames(myres)<- c(colnames(effcomp_obj$res),"t value", "Pr(>|t|)")
       
     if (adjmethod != "none" & length(tval) > 1) {
-        ## Note: if only one pwise comparison, no adjustment is needed!
+        ## Note: if only one pairwise comparison, no adjustment is needed!
         pval_adj <- p_adjust(pval, adjmethod, effcomp_obj$ncomp, tval = tval, df = effcomp_obj$df)
         
         myres <- cbind(myres, pval_adj)
