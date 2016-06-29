@@ -57,7 +57,7 @@ and its arguments are:
 ### Utility function
 
 The utility function `p_adjust` computes p-values adjusted for
-multiple comparisons. It adds two new p-value adjustement methods to R
+multiple comparisons. It adds two new p-value adjustment methods to R
 base's `p.adjust`, "sidak" and "scheffe", and is called by `testpwcomp()`.
 
 
