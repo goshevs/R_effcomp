@@ -1,4 +1,4 @@
-# An R Utility for Pairwise Comparisons of Margins Computed with Functions in Package 'effects'
+#R Utility for Pairwise Comparisons of Margins Computed with Functions in Package 'effects'
 
 
 Package 'effects' in R offers excellent functionality for
