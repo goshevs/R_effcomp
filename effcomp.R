@@ -118,10 +118,13 @@ effcomp <- function(effects_obj, lincon, all = FALSE) {
 
     ## Number of comparisons (for p-value adjustment)
     ncomp <- length(beta_contr)
-    
+
     ## Return estimates
-    list(res = myres, contr = beta_contr, vcov = vcov_contr, ssize = ssize,
-         df = df, ncomp = ncomp, labels = myrow_names, mat_lincon = lincon)
+    effcomp_est <- list(res = myres, contr = beta_contr, vcov = vcov_contr, ssize = ssize,
+                        df = df, ncomp = ncomp, labels = myrow_names, mat_lincon = lincon)
+    effcomp_est$call <- match.call()
+    class(effcomp_est) <- "effpwcompare"
+    return(effcomp_est)
 }
 
 
@@ -145,6 +148,8 @@ testpwcomp <- function(effcomp_obj, adjmethod = "none") {
     else {
         myout <- list(res = myres, tval = tval, pval_unadj = pval)
     }
+    myout$call <- match.call()
+    class(myout) <- "testpwcompare"
     return(myout)
 }
 
@@ -167,5 +172,30 @@ p_adjust <- function(pval, adjmethod, n = length(pval), tval = NULL, df = NULL) 
         ## See p.adjust for allowed methods of adjustment
         pval_adj <- p.adjust(pval, adjmethod)
     }
+}
+
+
+### R4: SUMMARY METHODS
+
+summary.effpwcompare <- function(x, ...) {
+    cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), 
+        "\n\n", sep = "")
+    cat("Pairwise differences of margins.\n\n")
+    cat("Output:\n")
+    print.default(round(x$res, 4), print.gap = 2L)
+    cat("\n")
+    cat("\n")
+    invisible(x)
+}
+
+summary.testpwcompare <- function(x, ...) {
+    cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), 
+        "\n\n", sep = "")
+    cat("Tests of pairwise differences of margins.\n\n")
+    cat("Output:\n")
+    print.default(round(x$res, 4), print.gap = 2L)
+    cat("\n")
+    cat("\n")
+    invisible(x)
 }
 

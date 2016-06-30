@@ -12,8 +12,8 @@ of each file is discussed in more detail below.
 
 ## File effcomp.R
 
-File _effcomp.R_ contains three functions: two primary functions and one
-utility function. Users would perhaps want to consider using only the primary functions.
+File _effcomp.R_ contains three functions: two primary functions and three
+utility functions. Users would perhaps want to consider using only the primary functions.
 
 ### Primary functions
 
@@ -54,11 +54,15 @@ and its arguments are:
   methods described in `p.adjust` of base R, "sidak" and "scheffe".
   
   
-### Utility function
+### Utility functions
 
-The utility function `p_adjust` computes p-values adjusted for
-multiple comparisons. It adds two new p-value adjustment methods to R
-base's `p.adjust`, "sidak" and "scheffe", and is called by `testpwcomp()`.
+Function `p_adjust` computes p-values adjusted for multiple
+comparisons. It adds two new p-value adjustment methods, "sidak" and "scheffe", to R's
+built-in function `p.adjust`. This function is heavily used by
+`testpwcomp()`.
+
+The remaining two utility functions define summary methods for
+`effcomp` and `testpwcomp`.
 
 
 ## File examples.R
