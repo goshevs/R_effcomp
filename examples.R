@@ -39,13 +39,13 @@ comps <- effcomp(type_eff, all = TRUE)   # compute all contrasts
 summary(comps)                           # print contrasts
 
 comps_tests <- testpwcomp(comps)  # compute statistical tests, no adjustment for mulitple comparisons
-summary(comps_tests)              # print all results
+summary(comps_tests)              # print results
 
 comps_tests_bon <- testpwcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
-summary(comps_tests_bon)                            # print all results
+summary(comps_tests_bon)                            # print results
 
 comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
-summary(comps_tests_sch)                       # print all results
+summary(comps_tests_sch)                       # print results
 
 
 ##### ~~~~~~ {TEST 1.2: MATRIX OF LINEAR CONTRASTS} ~~~~~~
@@ -58,13 +58,13 @@ comps <- effcomp(type_eff,contr_mat)   # compute all contrasts
 summary(comps)                         # print contrasts
 
 comps_tests <- testpwcomp(comps)  # compute statistical tests, no adjustment for mulitple comparisons
-summary(comps_tests)          # print all results
+summary(comps_tests)          # print results
 
 comps_tests_bon <- testpwcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
-summary(comps_tests_bon)                   # print all results
+summary(comps_tests_bon)                   # print results
 
 comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
-summary(comps_tests_sch)                   # print all results
+summary(comps_tests_sch)                   # print results
 
 
 
@@ -80,13 +80,13 @@ comps <- effcomp(type_educ, all = TRUE)   # compute all contrasts
 summary(comps)                          # print contrasts
 
 comps_tests <- testpwcomp(comps)        # compute statistical tests, no adjustment for mulitple comparisons
-summary(comps_tests)                    # print all results
+summary(comps_tests)                    # print results
 
 comps_tests_bon <- testpwcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
-summary(comps_tests_bon)                           # print all results
+summary(comps_tests_bon)                           # print results
 
 comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
-summary(comps_tests_sch)                         # print all results
+summary(comps_tests_sch)                         # print results
 
 
 ##### ~~~~~~ {TEST 2.2: MATRIX OF LINEAR CONTRASTS} ~~~~~~
@@ -100,13 +100,13 @@ comps <- effcomp(type_educ,contr_mat)   # compute all contrasts
 summary(comps)                          # print contrasts
 
 comps_tests <- testpwcomp(comps)  # compute statistical tests, no adjustment for mulitple comparisons
-summary(comps_tests)                   # print all results
+summary(comps_tests)                   # print results
 
 comps_tests_bon <- testpwcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
-summary(comps_tests_bon)                   # print all results
+summary(comps_tests_bon)                   # print results
 
 comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
-summary(comps_tests_sch)                        # print all results
+summary(comps_tests_sch)                        # print results
 
 
 
@@ -119,13 +119,13 @@ comps <- effcomp(type_educ_inc, all = TRUE)   # compute all contrasts
 summary(comps)                          # print contrasts
 
 comps_tests <- testpwcomp(comps)           # compute statistical tests, no adjustment for mulitple comparisons
-summary(comps_tests)                    # print all results
+summary(comps_tests)                    # print results
 
 comps_tests_bon <- testpwcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
-summary(comps_tests_bon)                   # print all results
+summary(comps_tests_bon)                   # print results
 
 comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
-summary(comps_tests_sch)                        # print all results
+summary(comps_tests_sch)                        # print results
 
 
 
@@ -140,13 +140,13 @@ comps <- effcomp(type_educ_inc, contr_mat)   # compute all contrasts
 summary(comps)                         # print contrasts
 
 comps_tests <- testpwcomp(comps)  # compute statistical tests, no adjustment for mulitple comparisons
-summary(comps_tests)                   # print all results
+summary(comps_tests)                   # print results
 
 comps_tests_bon <- testpwcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
-summary(comps_tests_bon)                            # print all results
+summary(comps_tests_bon)                            # print results
 
 comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
-summary(comps_tests_sch)                         # print all results
+summary(comps_tests_sch)                         # print results
 
 
 
