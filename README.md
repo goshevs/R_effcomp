@@ -59,7 +59,7 @@ and its arguments are:
 Function `p_adjust` computes p-values adjusted for multiple
 comparisons. It adds two new p-value adjustment methods, "sidak" and "scheffe", to R's
 built-in function `p.adjust`. This function is heavily used by
-`testpwcomp()`.
+`testpwcomp`.
 
 The remaining two utility functions define summary methods for
 `effcomp` and `testpwcomp`.
