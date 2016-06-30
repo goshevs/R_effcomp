@@ -129,7 +129,7 @@ summary(comps_tests_sch)                        # print all results
 
 
 
-##### ~~~~~~ {TEST 2.2: MATRIX OF LINEAR CONTRASTS} ~~~~~~
+##### ~~~~~~ {TEST 2.4: MATRIX OF LINEAR CONTRASTS} ~~~~~~
 
 contr_mat <- matrix(c(-1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                        0,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
@@ -147,3 +147,7 @@ summary(comps_tests_bon)                            # print all results
 
 comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
 summary(comps_tests_sch)                         # print all results
+
+
+
+
