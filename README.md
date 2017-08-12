@@ -21,9 +21,9 @@ functions. Users would want to use only the primary function.
 Primary function
 ----------------
 
-The primary function is **effcomp**.
+The primary function is `effcomp`.
 
-**Effcomp** computes pairwise differences in margins and also reports
+`effcomp` computes pairwise differences in margins and also reports
 significance tests of differences in the margins, if requested. Its
 syntax is:
 
@@ -69,7 +69,7 @@ package.
     rm(list=ls())
     library(effects)
 
-Next, we source effcomp.R
+Next, we source *effcomp.R*
 
     # Source in effcomp.R
     source("effcomp.R")
@@ -85,7 +85,7 @@ and make some minor changes to the variables
 
     Prestige$income <- Prestige$income/1000
 
-We are now ready to illustrate the usage of **effcomp**.
+We are now ready to illustrate the usage of `effcomp`.
 
 Contrasts of margins, one variable
 ----------------------------------
@@ -101,7 +101,7 @@ We run our model and compute the margins of variable *type*.
     ## 2 prof 58.14816 2.258361 53.66286 62.63346
     ## 3   wc 46.30919 1.811231 42.71193 49.90645
 
-To obtain all possible contrast of the margins of variable *type*, we
+To obtain all possible contrast of the margins of variable *`type`*, we
 execute
 
     comps <- effcomp(type_eff, all = TRUE)   # compute all contrasts
@@ -236,7 +236,7 @@ Contrasts of margins, two or more variables
 **Effcomp** can be used to construct contrasts of margins computed over
 multiple variables.
 
-Here, we compute margins over *type* and *educ*:
+Here, we compute margins over *`type`* and *`educ`*:
 
     type_educ <- Effect(c("type","educ"), fit_lm)       # compute effects
     as.data.frame(type_educ)                            # print effects
@@ -367,7 +367,7 @@ If we need to test for significance of the differences, we run
     ## prof-14 vs prof-13   -3.1930  4.5002  -0.7095    0.4798       0.9998
     ## prof-14 vs wc-13      8.6460  4.6236   1.8700    0.0647       0.8959
 
-As before, **effcomp** accepts a matrix of user-specified contrasts. We
+As before, `effcomp` accepts a matrix of user-specified contrasts. We
 first create the matrix of contrasts
 
     contr_mat <- matrix(c(-1, 1, 0, 0, 0, 0, 0, 0, 0,
@@ -375,7 +375,7 @@ first create the matrix of contrasts
                            0, 0,-1, 0, 0, 1, 0, 0, 0),
                         nrow = 3, byrow = TRUE)
 
-and then feed it to **effcomp**:
+and then feed it to `effcomp`:
 
     comps <- effcomp(type_educ, contr_mat)   # compute all contrasts
     summary(comps)
