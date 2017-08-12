@@ -26,22 +26,22 @@ in the margins. The goal of this project is to fill this void.
 Installation
 ======
 
-Download and source _effcomp.R_ into R. 
+Download and source *effcomp.R* into R. 
 
 
 Functionality
 ======
 
-File _effcomp.R_ contains one primary function and several utility
+File *effcomp.R* contains one primary function and several utility
 functions. Users would want to use only the primary function.
 
 
 Primary function
 ------
 
-The primary function is **effcomp**.
+The primary function is `effcomp`.
 
-**Effcomp** computes pairwise differences in margins and also reports
+`effcomp` computes pairwise differences in margins and also reports
 significance tests of differences in the margins, if requested. Its
 syntax is:  
 
@@ -91,7 +91,7 @@ rm(list=ls())
 library(effects)
 ```
 
-Next, we source effcomp.R
+Next, we source *effcomp.R*
 
 ```{r}
 # Source in effcomp.R
@@ -111,7 +111,7 @@ Prestige$educ <- as.factor(Prestige$educ)
 Prestige$income <- Prestige$income/1000
 ```
 
-We are now ready to illustrate the usage of **effcomp**.
+We are now ready to illustrate the usage of `effcomp`.
 
 Contrasts of margins, one variable 
 ------
@@ -124,7 +124,7 @@ type_eff <- effect("type", fit_lm)       # compute effects
 as.data.frame(type_eff)                  # print effects
 ```
 
-To obtain all possible contrast of the margins of variable *type*, we
+To obtain all possible contrast of the margins of variable *`type`*, we
 execute
 
 ```{r}
@@ -187,7 +187,7 @@ Contrasts of margins, two or more variables
 **Effcomp** can be used to construct contrasts of margins computed
 over multiple variables.
 
-Here, we compute margins over *type* and *educ*:
+Here, we compute margins over *`type`* and *`educ`*:
 
 ```{r}
 type_educ <- Effect(c("type","educ"), fit_lm)       # compute effects
@@ -216,7 +216,7 @@ comps <- effcomp(type_educ, all = TRUE, tests = TRUE, adjmethod = "scheffe")
 summary(comps)
 ```
 
-As before, **effcomp** accepts a matrix of user-specified contrasts.
+As before, `effcomp` accepts a matrix of user-specified contrasts.
 We first create the matrix of contrasts
 ```{r}
 contr_mat <- matrix(c(-1, 1, 0, 0, 0, 0, 0, 0, 0,
@@ -225,7 +225,7 @@ contr_mat <- matrix(c(-1, 1, 0, 0, 0, 0, 0, 0, 0,
                     nrow = 3, byrow = TRUE)
 
 ```
-and then feed it to **effcomp**:
+and then feed it to `effcomp`:
 
 ```{r}
 comps <- effcomp(type_educ, contr_mat)   # compute all contrasts
