@@ -1,7 +1,6 @@
 ##
 ## Contrasts after effect (effects package)
 ##
-## 06/29/2016
 ## Simo Goshev
 ##
 ##
@@ -11,7 +10,7 @@
 ### 1. FUNCTION DEFINITION
 
 ### R1: ROUTINE FOR COMPUTING PAIRWISE LINEAR CONTRASTS
-effcomp <- function(effects_obj, lincon, all = FALSE) {
+effcomp <- function(effects_obj, lincon, all = FALSE, tests = FALSE, ...) {
 
     
     nvars <- dim(effects_obj$x)[2]      # get the number of variables used in effects
@@ -120,8 +119,20 @@ effcomp <- function(effects_obj, lincon, all = FALSE) {
     ncomp <- length(beta_contr)
 
     ## Return estimates
-    effcomp_est <- list(res = myres, contr = beta_contr, vcov = vcov_contr, ssize = ssize,
-                        df = df, ncomp = ncomp, labels = myrow_names, mat_lincon = lincon)
+    effcomp_est <- list(res = myres,
+                        contr = beta_contr,
+                        vcov = vcov_contr,
+                        ssize = ssize,
+                        df = df,
+                        ncomp = ncomp,
+                        labels = myrow_names,
+                        mat_lincon = lincon)
+
+    ## If tests are requested
+    if (tests) {
+        effcomp_est <- testpwcomp(effcomp_est, ...)
+    }
+    
     effcomp_est$call <- match.call()
     class(effcomp_est) <- "effpwcompare"
     return(effcomp_est)
@@ -129,7 +140,7 @@ effcomp <- function(effects_obj, lincon, all = FALSE) {
 
 
 ### R2: ROUTINE FOR COMPUTING STATISTICAL TESTS FOR PAIRWISE LINEAR CONTRASTS
-testpwcomp <- function(effcomp_obj, adjmethod = "none") {
+testpwcomp <- function(effcomp_obj, adjmethod = "bonferroni") {
 
     tval <- effcomp_obj$contr/sqrt(diag(effcomp_obj$vcov))
     pval <- 2*(1 - pt(abs(tval), effcomp_obj$df[2]))
@@ -148,8 +159,6 @@ testpwcomp <- function(effcomp_obj, adjmethod = "none") {
     else {
         myout <- list(res = myres, tval = tval, pval_unadj = pval)
     }
-    myout$call <- match.call()
-    class(myout) <- "testpwcompare"
     return(myout)
 }
 
@@ -175,7 +184,7 @@ p_adjust <- function(pval, adjmethod, n = length(pval), tval = NULL, df = NULL) 
 }
 
 
-### R4: SUMMARY METHODS
+### R4: SUMMARY METHOD
 
 summary.effpwcompare <- function(x, ...) {
     cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), 
@@ -187,15 +196,3 @@ summary.effpwcompare <- function(x, ...) {
     cat("\n")
     invisible(x)
 }
-
-summary.testpwcompare <- function(x, ...) {
-    cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), 
-        "\n\n", sep = "")
-    cat("Tests of pairwise differences of margins.\n\n")
-    cat("Output:\n")
-    print.default(round(x$res, 4), print.gap = 2L)
-    cat("\n")
-    cat("\n")
-    invisible(x)
-}
-
