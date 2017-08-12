@@ -159,7 +159,7 @@ specify the command in the following way:
 All standard methods for adjustment are available. Sidak's method has
 also be added.
 
-**Effcomp** also accepts a user provided matrix for constructing desired
+`effcomp` also accepts a user provided matrix for constructing desired
 contrasts.
 
     contr_mat <- matrix(c(-1, 1, 0,
@@ -233,7 +233,7 @@ multiple comparisons), we use the following syntax:
 Contrasts of margins, two or more variables
 -------------------------------------------
 
-**Effcomp** can be used to construct contrasts of margins computed over
+`effcomp` can be used to construct contrasts of margins computed over
 multiple variables.
 
 Here, we compute margins over *`type`* and *`educ`*:
