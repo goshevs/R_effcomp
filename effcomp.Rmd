@@ -1,0 +1,272 @@
+---
+title: "R Utility for Pairwise Comparisons of Margins Computed with Functions in Package 'effects'"
+author: "Simo Goshev"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+    number_sections: true
+    theme: default
+    highlight: textmate
+---
+
+Introduction
+======
+
+Package 'effects' in R offers excellent functionality for
+computing the type of marginal effects known as average partial
+effects. An unfortunate shotfall of the package is that it does not
+offer capabilities for computing and testing of pairwise differences
+in the margins. The goal of this project is to fill this void.
+
+
+Installation
+======
+
+Download and source _effcomp.R_ into R. 
+
+
+Functionality
+======
+
+File _effcomp.R_ contains three functions: two primary functions and
+three utility functions. Users would want to use only the primary
+functions.
+
+Primary functions
+------
+
+The primary functions are **effcomp** and **testpwcomp**.
+
+**Effcomp** computes pairwise differences in margins. Its
+syntax is:  
+
+    effcomp(effects_obj, lincon, all = FALSE)
+
+and its arguments are:
+
++ `effects_obj`: the object created by running either `effect` or
+  `Effect` from Package 'effects'
+  
++ `lincon`: stands for "linear contrasts" and is a matrix of
+  pairwise linear contrasts which is provided by the user. This
+  argument can be omitted if `all == TRUE`
+  
++ `all`: a logical flag which indicates whether all possible
+  pairwise contrasts are to be computed. At its default value
+  `FALSE`, the user has to provide a matrix of pairwise linear
+  contrasts.
+  
+**Testpwcomp** computes statistical tests for the pairwise
+differences of margins. It also allows for adjustment of the p-values
+of the tests for multiple comparisons. The syntax of the command is:
+
+    testpwcomp(effcomp_obj, adjmethod = "none")
+    
+and its arguments are:
+
++ `effcomp_obj`: the object created by running `effcomp`
+  
++ `adjmethod`: the method for adjusting the p-values of the
+  statistical tests. Default value is `"none"`. Available methods are all
+  methods described in `p.adjust` of base R as well as "sidak" and "scheffe".
+  
+  
+Utility functions
+-------
+
+Function **p_adjust** computes p-values adjusted for multiple
+comparisons. It adds two new p-value adjustment methods, "sidak" and
+"scheffe", to R's built-in function `p.adjust`. This function is
+heavily used by `testpwcomp`.
+
+The remaining two utility functions define summary methods for
+`effcomp` and `testpwcomp`.
+
+
+Usage Examples
+=======
+
+We start by removing all objects in memory and loading the effect package.
+
+```{r}
+## Clear memory and load package effects
+rm(list=ls())
+library(effects)
+```
+
+Next, we source effcomp.R
+
+```{r}
+# Source in effcomp.R
+source("effcomp.R")
+```
+
+Finally, we load an example dataset provided in the _effects_ package and make
+some minor changes to the variables
+
+```{r}
+## Making minor changes to the data
+Prestige$educ <- round(Prestige$education)
+Prestige$educ <- ifelse(Prestige$educ <= 12, 12, Prestige$educ)
+Prestige$educ <- ifelse(Prestige$educ >= 14, 14, Prestige$educ)
+Prestige$educ <- as.factor(Prestige$educ)
+
+Prestige$income <- Prestige$income/1000
+```
+
+We are now ready to illustrate the usage of **effcomp** and **testpwcomp**.
+
+Contrasts of margins, one variable 
+------
+
+We run our model and compute the margins of variable *type*.
+
+```{r}
+fit_lm <- lm(prestige ~ income + type + educ, data = Prestige)
+type_eff <- effect("type", fit_lm)       # compute effects
+as.data.frame(type_eff)                  # print effects
+```
+
+To obtain all possible contrast of the margins of variable *type*, we
+execute
+
+```{r}
+comps <- effcomp(type_eff, all = TRUE)   # compute all contrasts
+summary(comps)                           # print contrasts
+```
+
+To test whether the margins are different from each other, we use the
+following command:
+
+```{r}
+comps_tests <- testpwcomp(comps)  # no adjustment
+summary(comps_tests)              # print results
+```
+
+Note, that the p-values above are not adjusted for multiple
+comparisons. Next, we adjust for multiple comparisons using two
+popular methods:
+
+```{r}
+
+comps_tests_bon <- testpwcomp(comps, "bonferroni")  # Bonferrroni adjustment
+summary(comps_tests_bon)                            # print results
+
+comps_tests_sch <- testpwcomp(comps, "scheffe")     # Scheffe adjustment
+summary(comps_tests_sch)                            # print results
+```
+
+All standard methods for adjustment are available. Sidak's method has
+also be added.
+
+**Effcomp** also accepts a user provided matrix of desired contrasts.
+```{r}
+contr_mat <- matrix(c(-1, 1, 0,
+                      -1, 0, 1),
+                    nrow = 2, byrow = TRUE)
+
+comps <- effcomp(type_eff,contr_mat)   # compute contrasts
+summary(comps)                         # print contrasts
+```
+
+The tests for differences in the margins are executed as above:
+```{r}
+comps_tests <- testpwcomp(comps)                    # no adjustment
+summary(comps_tests)                                # print results
+
+comps_tests_bon <- testpwcomp(comps, "bonferroni")  # Bonferrroni adjustment
+summary(comps_tests_bon)                            # print results
+
+comps_tests_sch <- testpwcomp(comps, "scheffe")     # Scheffe adjustment
+summary(comps_tests_sch)                            # print results
+```
+
+Contrasts of margins, two or more variables
+-----
+
+```{r}
+##### ~~~~~~ {TEST 2.1: ALL CONTRASTS} ~~~~~~
+
+type_educ <- Effect(c("type","educ"), fit_lm)       # compute effects
+as.data.frame(type_educ)                            # print effects
+
+comps <- effcomp(type_educ, all = TRUE)   # compute all contrasts
+summary(comps)                          # print contrasts
+
+comps_tests <- testpwcomp(comps)        # compute statistical tests, no adjustment for mulitple comparisons
+summary(comps_tests)                    # print results
+
+comps_tests_bon <- testpwcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
+summary(comps_tests_bon)                           # print results
+
+comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
+summary(comps_tests_sch)                         # print results
+
+
+##### ~~~~~~ {TEST 2.2: MATRIX OF LINEAR CONTRASTS} ~~~~~~
+
+contr_mat <- matrix(c(-1, 1, 0, 0, 0, 0, 0, 0, 0,
+                       0,-1, 0, 0, 0, 0, 0, 1, 0,
+                       0, 0,-1, 0, 0, 1, 0, 0, 0),
+                    nrow = 3, byrow = TRUE)
+
+comps <- effcomp(type_educ,contr_mat)   # compute all contrasts
+summary(comps)                          # print contrasts
+
+comps_tests <- testpwcomp(comps)  # compute statistical tests, no adjustment for mulitple comparisons
+summary(comps_tests)                   # print results
+
+comps_tests_bon <- testpwcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
+summary(comps_tests_bon)                   # print results
+
+comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
+summary(comps_tests_sch)                        # print results
+
+
+
+##### ~~~~~~ {TEST 2.3: THREE (AND MORE) VARIABLES} ~~~~~~
+
+type_educ_inc <- Effect(c("type","educ","income"), fit_lm, xlevels=list(income=c(10,20))) # compute effects
+as.data.frame(type_educ_inc)                            # print effects
+
+comps <- effcomp(type_educ_inc, all = TRUE)   # compute all contrasts
+summary(comps)                          # print contrasts
+
+comps_tests <- testpwcomp(comps)           # compute statistical tests, no adjustment for mulitple comparisons
+summary(comps_tests)                    # print results
+
+comps_tests_bon <- testpwcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
+summary(comps_tests_bon)                   # print results
+
+comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
+summary(comps_tests_sch)                        # print results
+
+
+
+##### ~~~~~~ {TEST 2.4: MATRIX OF LINEAR CONTRASTS} ~~~~~~
+
+contr_mat <- matrix(c(-1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                       0,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-1, 0, 0, 1, 0, 0, 0),
+                    nrow = 3, byrow = TRUE)
+
+comps <- effcomp(type_educ_inc, contr_mat)   # compute all contrasts
+summary(comps)                         # print contrasts
+
+comps_tests <- testpwcomp(comps)  # compute statistical tests, no adjustment for mulitple comparisons
+summary(comps_tests)                   # print results
+
+comps_tests_bon <- testpwcomp(comps, "bonferroni")  # compute stat tests, Bonferrroni adj for mult comps
+summary(comps_tests_bon)                            # print results
+
+comps_tests_sch <- testpwcomp(comps, "scheffe")  # compute stat tests, Scheffe adj for mult comps
+summary(comps_tests_sch)                         # print results
+
+
+
+```
+
