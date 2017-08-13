@@ -136,7 +136,7 @@ If we also want to test whether the margins are different from each
 other, we run
 
 ```{r}
-comps <- effcomp(type_eff, all = TRUE, tests = TRUE)   # Bonferrroni adjustment, default
+comps <- effcomp(type_eff, all = TRUE, tests = TRUE)   # Bonferroni adjustment, default
 summary(comps)
 ```
 
@@ -171,7 +171,7 @@ multiple comparisons), we use the following syntax:
 comps <- effcomp(type_eff, contr_mat, tests = TRUE, adjmethod = "none") 
 summary(comps)
 
-## Bonferrroni adjustment
+## Bonferroni adjustment
 comps <- effcomp(type_eff, contr_mat, tests = TRUE)                     
 summary(comps)
 

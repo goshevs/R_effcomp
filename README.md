@@ -122,7 +122,7 @@ execute
 If we also want to test whether the margins are different from each
 other, we run
 
-    comps <- effcomp(type_eff, all = TRUE, tests = TRUE)   # Bonferrroni adjustment, default
+    comps <- effcomp(type_eff, all = TRUE, tests = TRUE)   # Bonferroni adjustment, default
     summary(comps)
 
     ## 
@@ -199,7 +199,7 @@ multiple comparisons), we use the following syntax:
     ## prof vs bc   17.9119  3.1957   5.6049    0.0000
     ## wc vs bc      6.0729  2.0338   2.9860    0.0036
 
-    ## Bonferrroni adjustment
+    ## Bonferroni adjustment
     comps <- effcomp(type_eff, contr_mat, tests = TRUE)                     
     summary(comps)
 
