@@ -170,11 +170,15 @@ multiple comparisons), we use the following syntax:
 ## No adjustment for multiple comparisons
 comps <- effcomp(type_eff, contr_mat, tests = TRUE, adjmethod = "none") 
 summary(comps)
+```
 
+```{r}
 ## Bonferroni adjustment
 comps <- effcomp(type_eff, contr_mat, tests = TRUE)                     
 summary(comps)
+```
 
+```{r}
 ## Scheffe's adjustment
 comps <- effcomp(type_eff, contr_mat, tests = TRUE, adjmethod = "scheffe")
 summary(comps)
@@ -206,11 +210,15 @@ If we need to test for significance of the differences, we run
 ## Compute statistical tests, no adjustment for mulitple comparisons
 comps <- effcomp(type_educ, all = TRUE, tests = TRUE, adjmethod = "none")
 summary(comps)
+```
 
+```{r}
 ## Bonferroni adjustment for multimple comparisons
 comps <- effcomp(type_educ, all = TRUE, tests = TRUE)
 summary(comps)
+```
 
+```{r}
 ## Scheffe's adjustment for multimple comparisons
 comps <- effcomp(type_educ, all = TRUE, tests = TRUE, adjmethod = "scheffe")
 summary(comps)
