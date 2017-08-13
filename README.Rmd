@@ -166,17 +166,23 @@ summary(comps)
 To test the differences in the margins (and apply adjustments for
 multiple comparisons), we use the following syntax:
 
++ No adjustment for multiple comparisons
+
 ```{r}
 ## No adjustment for multiple comparisons
 comps <- effcomp(type_eff, contr_mat, tests = TRUE, adjmethod = "none") 
 summary(comps)
 ```
 
++ Bonferroni adjustment for multiple comparisons
+
 ```{r}
 ## Bonferroni adjustment
 comps <- effcomp(type_eff, contr_mat, tests = TRUE)                     
 summary(comps)
 ```
+
++ Scheffe adjustment for multiple comparisons
 
 ```{r}
 ## Scheffe's adjustment
@@ -204,19 +210,24 @@ comps <- effcomp(type_educ, all = TRUE)   # compute all contrasts
 summary(comps)
 ```
 
-If we need to test for significance of the differences, we run
+If we need to test for significance of the differences, we run:
+
++ No adjustment for multiple comparisons
 
 ```{r}
 ## Compute statistical tests, no adjustment for mulitple comparisons
 comps <- effcomp(type_educ, all = TRUE, tests = TRUE, adjmethod = "none")
 summary(comps)
 ```
++ Bonferroni adjustment for multiple comparisons
 
 ```{r}
 ## Bonferroni adjustment for multimple comparisons
 comps <- effcomp(type_educ, all = TRUE, tests = TRUE)
 summary(comps)
 ```
+
++ Scheffe adjustment for multiple comparisons
 
 ```{r}
 ## Scheffe's adjustment for multimple comparisons

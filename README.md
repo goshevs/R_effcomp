@@ -183,6 +183,10 @@ contrasts.
 To test the differences in the margins (and apply adjustments for
 multiple comparisons), we use the following syntax:
 
+-   No adjustment for multiple comparisons
+
+<!-- -->
+
     ## No adjustment for multiple comparisons
     comps <- effcomp(type_eff, contr_mat, tests = TRUE, adjmethod = "none") 
     summary(comps)
@@ -199,6 +203,10 @@ multiple comparisons), we use the following syntax:
     ## prof vs bc   17.9119  3.1957   5.6049    0.0000
     ## wc vs bc      6.0729  2.0338   2.9860    0.0036
 
+-   Bonferroni adjustment for multiple comparisons
+
+<!-- -->
+
     ## Bonferroni adjustment
     comps <- effcomp(type_eff, contr_mat, tests = TRUE)                     
     summary(comps)
@@ -213,6 +221,10 @@ multiple comparisons), we use the following syntax:
     ##             Contrast      SE  t value  Pr(>|t|)  AdjPr(>|t|)
     ## prof vs bc   17.9119  3.1957   5.6049    0.0000       0.0000
     ## wc vs bc      6.0729  2.0338   2.9860    0.0036       0.0072
+
+-   Scheffe adjustment for multiple comparisons
+
+<!-- -->
 
     ## Scheffe's adjustment
     comps <- effcomp(type_eff, contr_mat, tests = TRUE, adjmethod = "scheffe")
@@ -281,7 +293,11 @@ To obtain the contrasts of these margins, we use
     ## prof-14 vs prof-13   -3.1930  4.5002
     ## prof-14 vs wc-13      8.6460  4.6236
 
-If we need to test for significance of the differences, we run
+If we need to test for significance of the differences, we run:
+
+-   No adjustment for multiple comparisons
+
+<!-- -->
 
     ## Compute statistical tests, no adjustment for mulitple comparisons
     comps <- effcomp(type_educ, all = TRUE, tests = TRUE, adjmethod = "none")
@@ -311,6 +327,10 @@ If we need to test for significance of the differences, we run
     ## prof-14 vs prof-13   -3.1930  4.5002  -0.7095    0.4798
     ## prof-14 vs wc-13      8.6460  4.6236   1.8700    0.0647
 
+-   Bonferroni adjustment for multiple comparisons
+
+<!-- -->
+
     ## Bonferroni adjustment for multimple comparisons
     comps <- effcomp(type_educ, all = TRUE, tests = TRUE)
     summary(comps)
@@ -338,6 +358,10 @@ If we need to test for significance of the differences, we run
     ## wc-13 vs prof-13    -11.8390  3.3361  -3.5487    0.0006       0.0092
     ## prof-14 vs prof-13   -3.1930  4.5002  -0.7095    0.4798       1.0000
     ## prof-14 vs wc-13      8.6460  4.6236   1.8700    0.0647       0.9701
+
+-   Scheffe adjustment for multiple comparisons
+
+<!-- -->
 
     ## Scheffe's adjustment for multimple comparisons
     comps <- effcomp(type_educ, all = TRUE, tests = TRUE, adjmethod = "scheffe")
