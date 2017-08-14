@@ -36,7 +36,7 @@ and its arguments are:
 
 -   `lincon`: stands for "linear contrasts" and is a matrix of pairwise
     linear contrasts which is provided by the user. This argument can be
-    omitted if `all == TRUE`
+    omitted if `all = TRUE`
 
 -   `all`: a logical flag which indicates whether all possible pairwise
     contrasts are to be computed. At its default value `FALSE`, the user
@@ -44,9 +44,9 @@ and its arguments are:
 
 -   `tests`: a logical flag which indicates whether tests of
     significance of the differences in margins are to be computed. By
-    default `tests == FALSE`
+    default `tests = FALSE`
 
--   `...`: if `tests == TRUE`, the user may wish pass specify a method
+-   `...`: if `tests = TRUE`, the user may wish pass specify a method
     for adjusting the p-values of the tests for multiple comparisons.
     This is done using the argument `adjmethod` which takes all methods
     described in `p.adjust` of base R as well as `"sidak"` and
