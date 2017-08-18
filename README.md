@@ -101,7 +101,7 @@ We run our model and compute the margins of variable *type*.
     ## 2 prof 58.14816 2.258361 53.66286 62.63346
     ## 3   wc 46.30919 1.811231 42.71193 49.90645
 
-To obtain all possible contrast of the margins of variable *`type`*, we
+To obtain all possible contrasts of the margins of variable *`type`*, we
 execute
 
     comps <- effcomp(type_eff, all = TRUE)   # compute all contrasts

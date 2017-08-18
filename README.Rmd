@@ -124,7 +124,7 @@ type_eff <- effect("type", fit_lm)       # compute effects
 as.data.frame(type_eff)                  # print effects
 ```
 
-To obtain all possible contrast of the margins of variable *`type`*, we
+To obtain all possible contrasts of the margins of variable *`type`*, we
 execute
 
 ```{r}
